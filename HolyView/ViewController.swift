@@ -10,16 +10,34 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var favoritesTabButton: UITabBarItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    //MARK: - Actions
+    
+    @IBAction func leftBarButtonPressed(sender: UIBarButtonItem) {
+        HolyView.show(UIColor.blackColor(), position: sender.center(), radius: 25, message: "Test message") { (dismissed) -> Void in
+            
+        }
+    }
+    
+    @IBAction func rightBarButtonPressed(sender: AnyObject) {
+        HolyView.show(UIColor.blackColor(), position: favoritesTabButton.center(), radius: 30.0, message: "There is no chances to fail!") { (dismissed) -> Void in
+            
+        }
     }
 
+    @IBAction func topLeftButtonPressed(sender: AnyObject) {
+        
+    }
+    
+    @IBAction func centerButtonPressed(sender: AnyObject) {
+        
+    }
 
 }
 

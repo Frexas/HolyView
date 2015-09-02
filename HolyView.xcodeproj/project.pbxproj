@@ -172,6 +172,7 @@
 				TargetAttributes = {
 					D4273E4E1B96E88D007643D3 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = Q954R38652;
 					};
 					D4273E631B96E88D007643D3 = {
 						CreatedOnToolsVersion = 6.4;
@@ -354,6 +355,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = HolyView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -364,6 +366,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = HolyView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -423,6 +426,7 @@
 				D4273E701B96E88D007643D3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D4273E711B96E88D007643D3 /* Build configuration list for PBXNativeTarget "HolyViewTests" */ = {
 			isa = XCConfigurationList;
@@ -431,6 +435,7 @@
 				D4273E731B96E88D007643D3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

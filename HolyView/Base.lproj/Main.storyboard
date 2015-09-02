@@ -13,11 +13,74 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tej-DJ-UIy">
+                                <rect key="frame" x="0.0" y="487" width="600" height="49"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="xtb-U6-L8l"/>
+                                </constraints>
+                                <items>
+                                    <tabBarItem systemItem="favorites" id="iL1-e9-kId"/>
+                                    <tabBarItem systemItem="more" id="ddA-3o-Xtp"/>
+                                </items>
+                            </tabBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ro-2u-xrl">
+                                <rect key="frame" x="40" y="40" width="100" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="5c3-g9-NT8"/>
+                                    <constraint firstAttribute="width" constant="100" id="Cwj-NN-DTV"/>
+                                </constraints>
+                                <state key="normal" title="Highlight Me!">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="topLeftButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XJH-fh-8Wn"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dnd-4M-NPa">
+                                <rect key="frame" x="250" y="253" width="100" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="Sez-yS-V3A"/>
+                                    <constraint firstAttribute="height" constant="30" id="X6g-hI-ZKG"/>
+                                </constraints>
+                                <state key="normal" title="Highlight Me!">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="centerButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Y5l-2G-vNX"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="dnd-4M-NPa" secondAttribute="centerX" id="3Bm-Md-vD4"/>
+                            <constraint firstItem="1ro-2u-xrl" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="40" id="Cpa-1s-c3B"/>
+                            <constraint firstAttribute="centerY" secondItem="dnd-4M-NPa" secondAttribute="centerY" id="KMW-7k-gSs"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="tej-DJ-UIy" secondAttribute="bottom" id="Ofs-f6-aYt"/>
+                            <constraint firstAttribute="trailing" secondItem="tej-DJ-UIy" secondAttribute="trailing" id="R3u-CC-HVf"/>
+                            <constraint firstItem="tej-DJ-UIy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="cPm-mO-9LR"/>
+                            <constraint firstItem="1ro-2u-xrl" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="40" id="ldf-pG-avF"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="0iY-4B-Igj"/>
+                    <navigationItem key="navigationItem" id="0iY-4B-Igj">
+                        <barButtonItem key="leftBarButtonItem" title="Me!" id="SWx-WB-h3K">
+                            <connections>
+                                <action selector="leftBarButtonPressed:" destination="BYZ-38-t0r" id="4Fc-Zr-Fwt"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Highlight &quot;Favorites&quot;" id="gg2-bO-vN1">
+                            <connections>
+                                <action selector="rightBarButtonPressed:" destination="BYZ-38-t0r" id="Y0G-fY-pTU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="favoritesTabButton" destination="iL1-e9-kId" id="AcZ-cz-1d5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
