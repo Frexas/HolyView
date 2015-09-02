@@ -112,9 +112,23 @@ class HolyView: UIView {
             })
         }
     }
-    
-    
-    
-    
-
 }
+
+//MARK: - Extensions
+
+extension UIBarItem {
+    func center() -> CGPoint {
+        if let view = self.valueForKey("view") as? UIView {
+            if let superView = view.superview {
+                return CGPoint(
+                    x: superView.frame.origin.x + view.frame.origin.x + view.bounds.width/2,
+                    y: superView.frame.origin.y + view.frame.origin.y + view.bounds.height/2
+                )
+            }
+        }
+        return CGPointZero
+    }
+}
+
+
+
