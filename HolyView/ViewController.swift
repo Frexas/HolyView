@@ -31,12 +31,16 @@ class ViewController: UIViewController {
         }
     }
 
-    @IBAction func topLeftButtonPressed(sender: AnyObject) {
-        
+    @IBAction func topLeftButtonPressed(sender: UIButton) {
+        HolyView.show(UIColor.blackColor(), position: sender.center, radius: 50.0, message: "") { (dismissed) -> Void in
+            
+        }
     }
     
     @IBAction func centerButtonPressed(sender: AnyObject) {
-        
+        HolyView.show(UIColor.blackColor(), position: sender.center, radius: 50.0, message: "") { (dismissed) -> Void in
+            
+        }
     }
 
 }

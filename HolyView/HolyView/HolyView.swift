@@ -11,17 +11,17 @@ import UIKit
 class HolyView: UIView {
     
     typealias CompletionBlock = (dismissed: Bool) -> Void
-    
     private var completion: CompletionBlock?
+    
     private let tapRec = UITapGestureRecognizer()
     private var holePosition = CGPointZero
     private var holeRadius: CGFloat = 0.0
+    private var bgView = UIView()
     
     class func show(bgColor: UIColor, position: CGPoint, radius: CGFloat, message: String?, completion: CompletionBlock) {
         if let window = UIApplication.sharedApplication().keyWindow {
             let view = HolyView(frame: window.bounds)
-            view.alpha = 0
-            view.backgroundColor = bgColor
+            view.backgroundColor = UIColor.clearColor()
             window.addSubview(view)
             
             view.completion = completion
@@ -34,24 +34,29 @@ class HolyView: UIView {
             
             //MASK
             
+            view.bgView.backgroundColor = bgColor
+            view.bgView.frame = view.bounds
+            view.bgView.alpha = 0.0
+            view.addSubview(view.bgView)
+            
             let maskLayer = CAShapeLayer()
             var path = CGPathCreateMutable()
             
             CGPathAddArc(path, nil, position.x, position.y, radius, 0.0, 2*3.14, false)
-            CGPathAddRect(path, nil, CGRectMake(0, 0, view.bounds.width, view.bounds.height))
+            CGPathAddRect(path, nil, CGRectMake(0, 0, view.bgView.bounds.width, view.bgView.bounds.height))
             
             maskLayer.backgroundColor = UIColor.blackColor().CGColor
             maskLayer.path = path;
             maskLayer.fillRule = kCAFillRuleEvenOdd
             
-            view.layer.mask = maskLayer
-            view.clipsToBounds = true
+            view.bgView.layer.mask = maskLayer
+            view.bgView.clipsToBounds = true
             if let message = message {
                 view.addMessage(message)
             }
             
             UIView.animateWithDuration(0.3, animations: { () -> Void in
-                view.alpha = 0.7
+                view.bgView.alpha = 0.7
             })
         }
     }
@@ -105,7 +110,7 @@ class HolyView: UIView {
     @objc private func holyViewTapped() {
         if let c = completion {
             UIView.animateWithDuration(0.3, animations: { () -> Void in
-                self.alpha = 0
+                self.bgView.alpha = 0
             }, completion: { (complete: Bool) -> Void in
                 self.removeFromSuperview()
                 c(dismissed: true)
