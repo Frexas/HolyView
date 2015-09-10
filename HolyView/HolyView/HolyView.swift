@@ -110,7 +110,11 @@ class HolyView: UIView {
     @objc private func holyViewTapped() {
         if let c = completion {
             UIView.animateWithDuration(0.3, animations: { () -> Void in
-                self.bgView.alpha = 0
+                for v in self.subviews {
+                    if let v = v as? UIView {
+                        v.alpha = 0
+                    }
+                }
             }, completion: { (complete: Bool) -> Void in
                 self.removeFromSuperview()
                 c(dismissed: true)
