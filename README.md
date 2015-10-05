@@ -7,6 +7,8 @@ Custom view with transparent circle hole and title/button subview
 * iOS 8.0+
 * Xcode 7.0+ (Swift 2)
 
+# Demo
+
 ![Demo](https://media.giphy.com/media/xTiTnos6zHdnruOfeM/giphy.gif)
 
 # Usage
