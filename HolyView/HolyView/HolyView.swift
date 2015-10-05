@@ -40,7 +40,7 @@ class HolyView: UIView {
             view.addSubview(view.bgView)
             
             let maskLayer = CAShapeLayer()
-            var path = CGPathCreateMutable()
+            let path = CGPathCreateMutable()
             
             CGPathAddArc(path, nil, position.x, position.y, radius, 0.0, 2*3.14, false)
             CGPathAddRect(path, nil, CGRectMake(0, 0, view.bgView.bounds.width, view.bgView.bounds.height))
@@ -65,7 +65,7 @@ class HolyView: UIView {
         let addToTop: Bool = holePosition.y > (self.bounds.height/2)
         
         let container = UIView()
-        container.setTranslatesAutoresizingMaskIntoConstraints(false)
+        container.translatesAutoresizingMaskIntoConstraints = false
         container.backgroundColor = UIColor.clearColor()
         addSubview(container)
         
@@ -75,7 +75,7 @@ class HolyView: UIView {
         self.addConstraint(NSLayoutConstraint(item: container, attribute: .Top, relatedBy: .Equal, toItem: self, attribute: .Top, multiplier: 1.0, constant: (addToTop ? 0.0 : holePosition.y+holeRadius)))
         
         let label = UILabel()
-        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        label.translatesAutoresizingMaskIntoConstraints = false
         container.addSubview(label)
         
         label.font = UIFont.systemFontOfSize(20.0)
@@ -89,7 +89,7 @@ class HolyView: UIView {
         container.addConstraint(NSLayoutConstraint(item: label, attribute: .Top, relatedBy: .Equal, toItem: container, attribute: .Top, multiplier: 1.0, constant: 16.0))
         
         let buttonLabel = UILabel()
-        buttonLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+        buttonLabel.translatesAutoresizingMaskIntoConstraints = false
         container.addSubview(buttonLabel)
         
         buttonLabel.font = UIFont(name: "HelveticaNeue-Medium", size: 20.0)
@@ -111,9 +111,7 @@ class HolyView: UIView {
         if let c = completion {
             UIView.animateWithDuration(0.3, animations: { () -> Void in
                 for v in self.subviews {
-                    if let v = v as? UIView {
-                        v.alpha = 0
-                    }
+                    v.alpha = 0
                 }
             }, completion: { (complete: Bool) -> Void in
                 self.removeFromSuperview()
