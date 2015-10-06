@@ -58,8 +58,14 @@ class HolyView: UIView {
             UIView.animateWithDuration(0.3, animations: { () -> Void in
                 view.bgView.alpha = 0.7
             })
+			
+			print(view.holeRadius)
         }
     }
+	
+	class func show(bgColor: UIColor, position: CGPoint, radius: CGFloat, padding: CGFloat, message: String?, completion: CompletionBlock) {
+		show(bgColor, position: position, radius: radius + padding * 2, message: message, completion: completion)
+	}
     
     private func addMessage(message: String) {
         let addToTop: Bool = holePosition.y > (self.bounds.height/2)

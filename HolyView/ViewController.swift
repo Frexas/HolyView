@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     //MARK: - Actions
     
     @IBAction func leftBarButtonPressed(sender: UIBarButtonItem) {
-        HolyView.show(UIColor.blackColor(), position: sender.center(), radius: 25, message: "Test message") { (dismissed) -> Void in
+		HolyView.show(UIColor.blackColor(), position: sender.center(), radius: 25, message: "Test message") { (dismissed) -> Void in
             
         }
     }
