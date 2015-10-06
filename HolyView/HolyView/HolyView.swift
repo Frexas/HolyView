@@ -58,8 +58,6 @@ class HolyView: UIView {
             UIView.animateWithDuration(0.3, animations: { () -> Void in
                 view.bgView.alpha = 0.7
             })
-			
-			print(view.holeRadius)
         }
     }
 	
