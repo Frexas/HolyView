@@ -16,54 +16,77 @@ class HolyView: UIView {
     private let tapRec = UITapGestureRecognizer()
     private var holePosition = CGPointZero
     private var holeRadius: CGFloat = 0.0
+    private var holeSize: CGSize = CGSizeZero {
+        didSet {
+            holeRadius = max(holeSize.height/2, holeSize.width/2)
+        }
+    }
     private var bgView = UIView()
     
-    class func show(bgColor: UIColor, position: CGPoint, radius: CGFloat, message: String?, completion: CompletionBlock) {
+    //MARK: - Public
+    
+    /// Custom view with transparent circle/rounded rectangle hole and title/button subview
+    /// - Parameter bgColor: color for semi transparent background
+    /// - Parameter center: center position of rounded rectangle
+    /// - Parameter size: widht and height of rectangle (for circle radius using half of width)
+    /// - Parameter cornerRadius: (Optional) using for rectangle corner radius (set nil for circle)
+    /// - Parameter message: (Optional) message for view description
+    /// - Parameter completion: completion block for touch recognizer
+    
+    class func show(withColor bgColor: UIColor, center: CGPoint, size: CGSize, cornerRadius: CGSize?, message: String?, completion: CompletionBlock) {
+        
+        let path = CGPathCreateMutable()
+        if let cr = cornerRadius {
+            CGPathAddRoundedRect(path, nil, CGRect(x: center.x-size.width/2, y: center.y-size.height/2, width: size.width, height: size.height), cr.width, cr.height)
+        } else {
+            CGPathAddArc(path, nil, center.x, center.y, size.width/2, 0.0, 2*3.14, false)
+        }
+        
+        let view = HolyView()
+        view.completion = completion
+        view.holePosition = center
+        view.holeSize = size
+        
+        view.setup(withColor: bgColor, holePath: path, message: message)
+        
+        UIView.animateWithDuration(0.3, animations: { () -> Void in
+            view.bgView.alpha = 0.7
+        })
+    }
+    
+    //MARK: - Private
+    
+    private func setup(withColor bgColor: UIColor, holePath: CGMutablePathRef, message: String?) {
         if let window = UIApplication.sharedApplication().keyWindow {
-            let view = HolyView(frame: window.bounds)
-            view.backgroundColor = UIColor.clearColor()
-            window.addSubview(view)
+            self.frame = window.bounds
+            self.backgroundColor = UIColor.clearColor()
+            window.addSubview(self)
             
-            view.completion = completion
-            view.tapRec.addTarget(view, action: "holyViewTapped")
-            view.addGestureRecognizer(view.tapRec)
-            view.userInteractionEnabled = true
-            
-            view.holePosition = position
-            view.holeRadius = radius
+            self.tapRec.addTarget(self, action: "holyViewTapped")
+            self.addGestureRecognizer(self.tapRec)
+            self.userInteractionEnabled = true
             
             //MASK
             
-            view.bgView.backgroundColor = bgColor
-            view.bgView.frame = view.bounds
-            view.bgView.alpha = 0.0
-            view.addSubview(view.bgView)
+            self.bgView.backgroundColor = bgColor
+            self.bgView.frame = self.bounds
+            self.bgView.alpha = 0.0
+            self.addSubview(self.bgView)
             
             let maskLayer = CAShapeLayer()
-            let path = CGPathCreateMutable()
             
-            CGPathAddArc(path, nil, position.x, position.y, radius, 0.0, 2*3.14, false)
-            CGPathAddRect(path, nil, CGRectMake(0, 0, view.bgView.bounds.width, view.bgView.bounds.height))
-            
+            CGPathAddRect(holePath, nil, CGRectMake(0, 0, self.bgView.bounds.width, self.bgView.bounds.height))
             maskLayer.backgroundColor = UIColor.blackColor().CGColor
-            maskLayer.path = path;
+            maskLayer.path = holePath;
             maskLayer.fillRule = kCAFillRuleEvenOdd
             
-            view.bgView.layer.mask = maskLayer
-            view.bgView.clipsToBounds = true
+            self.bgView.layer.mask = maskLayer
+            self.bgView.clipsToBounds = true
             if let message = message {
-                view.addMessage(message)
+                self.addMessage(message)
             }
-            
-            UIView.animateWithDuration(0.3, animations: { () -> Void in
-                view.bgView.alpha = 0.7
-            })
         }
     }
-	
-	class func show(bgColor: UIColor, position: CGPoint, radius: CGFloat, padding: CGFloat, message: String?, completion: CompletionBlock) {
-		show(bgColor, position: position, radius: radius + padding * 2, message: message, completion: completion)
-	}
     
     private func addMessage(message: String) {
         let addToTop: Bool = holePosition.y > (self.bounds.height/2)
