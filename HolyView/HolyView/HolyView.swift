@@ -39,7 +39,7 @@ class HolyView: UIView {
         if let cr = cornerRadius {
             CGPathAddRoundedRect(path, nil, CGRect(x: center.x-size.width/2, y: center.y-size.height/2, width: size.width, height: size.height), cr.width, cr.height)
         } else {
-            CGPathAddArc(path, nil, center.x, center.y, size.width/2, 0.0, 2*3.14, false)
+            path.addArc(center: center, radius: size.width/2, startAngle: 0.0, endAngle: 2*3.14, clockwise: false)
         }
         
         let view = HolyView()
@@ -75,7 +75,7 @@ class HolyView: UIView {
             
             let maskLayer = CAShapeLayer()
             
-            CGPathAddRect(holePath, nil, CGRectMake(0, 0, self.bgView.bounds.width, self.bgView.bounds.height))
+            holePath.addRect(CGRect(x: 0, y: 0, width: self.bgView.bounds.width, height: self.bgView.bounds.height))
             maskLayer.backgroundColor = UIColor.blackColor().CGColor
             maskLayer.path = holePath;
             maskLayer.fillRule = kCAFillRuleEvenOdd
