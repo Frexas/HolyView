@@ -19,27 +19,27 @@ class ViewController: UIViewController {
     
     //MARK: - Actions
     
-    @IBAction func leftBarButtonPressed(sender: UIBarButtonItem) {
-        HolyView.show(withColor: UIColor.blackColor(), center: sender.center(), size: CGSize(width: 50.0, height: 50.0), cornerRadius: nil, message: "Test message") { (dismissed) -> Void in
+    @IBAction func leftBarButtonPressed(_ sender: UIBarButtonItem) {
+        HolyView.show(withColor: UIColor.black, center: sender.center(), size: CGSize(width: 50.0, height: 50.0), cornerRadius: nil, message: "Test message") { (dismissed) -> Void in
             
         }
     }
     
-    @IBAction func rightBarButtonPressed(sender: AnyObject) {
-        HolyView.show(withColor: UIColor.blackColor(), center: favoritesTabButton.center(), size: CGSize(width: 60.0, height: 60.0), cornerRadius: nil, message: "There is no chances to fail!") { (dismissed) -> Void in
+    @IBAction func rightBarButtonPressed(_ sender: AnyObject) {
+        HolyView.show(withColor: UIColor.black, center: favoritesTabButton.center(), size: CGSize(width: 60.0, height: 60.0), cornerRadius: nil, message: "There is no chances to fail!") { (dismissed) -> Void in
             
         }
     }
 
-    @IBAction func topLeftButtonPressed(sender: UIButton) {
-        HolyView.show(withColor: UIColor.blackColor(), center: sender.center, size: CGSize(width: 100.0, height: 100.0), cornerRadius: nil, message: "") { (dismissed) -> Void in
+    @IBAction func topLeftButtonPressed(_ sender: UIButton) {
+        HolyView.show(withColor: UIColor.black, center: sender.center, size: CGSize(width: 100.0, height: 100.0), cornerRadius: nil, message: "") { (dismissed) -> Void in
             
         }
     }
     
-    @IBAction func centerButtonPressed(sender: AnyObject) {
-        HolyView.show(withColor: UIColor.redColor(), center: sender.center, size: CGSize(width: 100.0, height: 60.0), cornerRadius: CGSizeZero, message: "Try to stop me!") { (dismissed) -> Void in
-            HolyView.show(withColor: UIColor.redColor(), center: sender.center, size: CGSize(width: 100.0, height: 60.0), cornerRadius: CGSize(width: 4.0, height: 4.0), message: "Rounded corners") { (dismissed) -> Void in
+    @IBAction func centerButtonPressed(_ sender: AnyObject) {
+        HolyView.show(withColor: UIColor.red, center: sender.center, size: CGSize(width: 100.0, height: 60.0), cornerRadius: CGSize.zero, message: "Try to stop me!") { (dismissed) -> Void in
+            HolyView.show(withColor: UIColor.red, center: sender.center, size: CGSize(width: 100.0, height: 60.0), cornerRadius: CGSize(width: 4.0, height: 4.0), message: "Rounded corners") { (dismissed) -> Void in
                 
             }
         }
